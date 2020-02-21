@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "Node",
+    "baseUrl": "./",
+    "paths": {
+      "test": ["ext/test"]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

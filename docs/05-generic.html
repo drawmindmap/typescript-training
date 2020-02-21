@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    html,
+    body {
+      margin: 0px;
+      overflow: hidden;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <script type="module">
+class Shape {
+  
+
+   constructor(name) {
+    this._name = name;
+  }
+
+   get name() {
+    return this._name;
+  }
+}
+
+class Rect extends Shape {
+  
+
+  
+
+   constructor(name, x, y) {
+    super(name);
+    this._x = x;
+    this._y = y;
+  }
+
+   get x() {
+    return this._x;
+  }
+
+   get y() {
+    return this._y;
+  }
+}
+
+class Collection {constructor() { Collection.prototype.__init.call(this); }
+   __init() {this._array = [];}
+
+   add(item) {
+    this._array.push(item);
+  }
+
+   remove(item) {
+    const index = this._array.indexOf(item);
+    if (index >= 0) {
+      this._array.splice(index, 1);
+    }
+  }
+
+   get(index) {
+    return this._array[index];
+  }
+}
+
+/* eslint-disable */
+
+// Generic Classes
+{
+  class GenericNumber {
+    
+    
+  }
+
+  let myGenericNumber = new GenericNumber();
+  myGenericNumber.zeroValue = 0;
+  myGenericNumber.add = function(x, y) { return x + y; };
+
+  let stringNumeric = new GenericNumber();
+  stringNumeric.zeroValue = "";
+  stringNumeric.add = function(x, y) { return x + y; };
+
+  console.log(stringNumeric.add(stringNumeric.zeroValue, "test"));
+}
+
+// Generic Constraints
+{
+  
+
+
+
+  function loggingIdentity(arg) {
+    console.log(arg.length);  // Now we know it has a .length property, so no more error
+    return arg;
+  }
+
+  // loggingIdentity(3);  // Error, number doesn't have a .length property
+  loggingIdentity({length: 10, value: 3});
+}
+
+// Using Type Parameters in Generic Constraints
+{
+  function getProperty(obj, key) {
+    return obj[key];
+  }
+
+  let x = { a: 1, b: 2, c: 3, d: 4 };
+
+  getProperty(x, "a"); // okay
+  // getProperty(x, "m"); // error: Argument of type 'm' isn't assignable to 'a' | 'b' | 'c' | 'd'.
+}
+
+// Using Class Types in Generics
+{
+  class BeeKeeper {
+    
+  }
+
+  class ZooKeeper {
+    
+  }
+
+  class Animal {
+    
+  }
+
+  class Bee extends Animal {constructor(...args) { super(...args); Bee.prototype.__init.call(this); }
+    __init() {this.keeper = new BeeKeeper();}
+  }
+
+  class Lion extends Animal {constructor(...args2) { super(...args2); Lion.prototype.__init2.call(this); }
+    __init2() {this.keeper = new ZooKeeper();}
+  }
+
+  function createInstance(c) {
+    return new c();
+  }
+
+  createInstance(Lion).keeper.nametag;  // typechecks!
+  createInstance(Bee).keeper.hasMask;   // typechecks!
+}
+
+function log(shape) {
+  // eslint-disable-next-line no-console
+  console.log(shape.name);
+}
+
+const rect = new Rect('rect', 10, 20);
+log(rect);
+
+const collection = new Collection();
+collection.add(rect);
+console.log(collection.get(0).name);
+  </script>
+</body>
+</html>

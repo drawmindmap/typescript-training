@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    html,
+    body {
+      margin: 0px;
+      overflow: hidden;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <script type="module">
+/* eslint-disable */
+
+// Our First Interface
+{
+  
+
+
+
+  function printLabel(labeledObj) {
+    console.log(labeledObj.label);
+  }
+
+  let myObj = {size: 10, label: "Size 10 Object"};
+  printLabel(myObj);
+}
+
+
+// Optional Properties
+{
+  
+
+
+
+
+  function createSquare(config) {
+    let newSquare = {color: "white", area: 100};
+    if (config.color) {
+        newSquare.color = config.color;
+    }
+    if (config.width) {
+        newSquare.area = config.width * config.width;
+    }
+    return newSquare;
+  }
+
+  let mySquare = createSquare({color: "black"});
+}
+  </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    html,
+    body {
+      margin: 0px;
+      overflow: hidden;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <script type="module">
+/* eslint-disable */
+
+// Rest Parameters
+{
+  function buildName(firstName, ...restOfName) {
+    return firstName + " " + restOfName.join(" ");
+  }
+
+  // employeeName will be "Joseph Samuel Lucas MacKinzie"
+  let employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
+}
+{
+  
+
+
+
+
+
+
+
+
+  let deck = {
+    suits: ["hearts", "spades", "clubs", "diamonds"],
+    cards: Array(52),
+    // NOTE: The function now explicitly specifies that its callee must be of type Deck
+    createCardPicker: function() {
+      return () => {
+        let pickedCard = Math.floor(Math.random() * 52);
+        let pickedSuit = Math.floor(pickedCard / 13);
+
+        return {suit: this.suits[pickedSuit], card: pickedCard % 13};
+      }
+    }
+  };
+
+  let cardPicker = deck.createCardPicker();
+  let pickedCard = cardPicker();
+
+  alert("card: " + pickedCard.card + " of " + pickedCard.suit);
+}
+
+// this parameters in callbacks
+{
+  
+
+
+  class Handler {
+    
+    onClickGood( e) {
+      // can't use `this` here because it's of type void!
+      console.log('clicked!');
+    }
+  }
+  let h = new Handler();
+  let uiElement = {} ;
+  uiElement.addClickListener(h.onClickGood);
+}
+
+
+// Overloads
+{
+  let suits = ["hearts", "spades", "clubs", "diamonds"];
+
+  
+
+  function pickCard(x) {
+    // Check to see if we're working with an object/array
+    // if so, they gave us the deck and we'll pick the card
+    if (typeof x == "object") {
+      let pickedCard = Math.floor(Math.random() * x.length);
+      return pickedCard;
+    }
+    // Otherwise just let them pick the card
+    else if (typeof x == "number") {
+      let pickedSuit = Math.floor(x / 13);
+      return { suit: suits[pickedSuit], card: x % 13 };
+    }
+  }
+
+  let myDeck = [{ suit: "diamonds", card: 2 }, { suit: "spades", card: 10 }, { suit: "hearts", card: 4 }];
+  let pickedCard1 = myDeck[pickCard(myDeck)];
+  alert("card: " + pickedCard1.card + " of " + pickedCard1.suit);
+
+  let pickedCard2 = pickCard(15);
+  alert("card: " + pickedCard2.card + " of " + pickedCard2.suit);
+}
+  </script>
+</body>
+</html>

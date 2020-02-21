@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    html,
+    body {
+      margin: 0px;
+      overflow: hidden;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <script type="module">
+const numberRegexp = /^[0-9]+$/;
+
+class ZipCodeValidator  {
+  isAcceptable(s) {
+    return s.length === 5 && numberRegexp.test(s);
+  }
+}
+
+/* eslint-disable */
+
+const validator = new ZipCodeValidator();
+console.log(validator);
+  </script>
+</body>
+</html>
