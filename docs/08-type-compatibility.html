@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="data:;base64,iVBORw0KGgo=">
   <style>
     html,
     body {
@@ -16,60 +17,58 @@
 <body>
   <script type="module">
 /* eslint-disable */
-
 // x is compatible with y if y has at least the same members as x
 {
-  // y's inferred type is { name: string; location: string; }
-  let y = { name: "Alice", location: "Seattle" };
-
-  function greet(n) {
-    console.log("Hello, " + n.name);
-  }
-  greet(y); // OK
+    // y's inferred type is { name: string; location: string; }
+    let y = { name: "Alice", location: "Seattle" };
+    function greet(n) {
+        console.log("Hello, " + n.name);
+    }
+    greet(y); // OK
 }
-
 // The source function should has less same parameters
 {
-  // x = y; // Error
-
-  let items = [1, 2, 3];
-
-  // Don't force these extra parameters
-  items.forEach((item, index, array) => console.log(item));
-
-  // Should be OK!
-  items.forEach(item => console.log(item));
+    // x = y; // Error
+    let items = [1, 2, 3];
+    // Don't force these extra parameters
+    items.forEach((item, index, array) => console.log(item));
+    // Should be OK!
+    items.forEach(item => console.log(item));
 }
-
 // When comparing the types of function parameters,
 // assignment succeeds if either the source parameter is assignable to the target parameter, or vice versa
 {
-  var EventType; (function (EventType) { const Mouse = 0; EventType[EventType["Mouse"] = Mouse] = "Mouse"; const Keyboard = Mouse + 1; EventType[EventType["Keyboard"] = Keyboard] = "Keyboard"; })(EventType || (EventType = {}));
-
-  
-
-
-
-  function listenEvent(eventType, handler) {
-    /* ... */
-  }
-
-  // Unsound, but useful and common
-  listenEvent(EventType.Mouse);
-
-  // Undesirable alternatives in presence of soundness
-  listenEvent(EventType.Mouse);
-  listenEvent(EventType.Mouse);
-
-  // Still disallowed (clear error). Type safety enforced for wholly incompatible types
-  // listenEvent(EventType.Mouse, (e: number) => console.log(e));
+    let EventType;
+    (function (EventType) {
+        EventType[EventType["Mouse"] = 0] = "Mouse";
+        EventType[EventType["Keyboard"] = 1] = "Keyboard";
+    })(EventType || (EventType = {}));
+    function listenEvent(eventType, handler) {
+        /* ... */
+    }
+    // Unsound, but useful and common
+    listenEvent(EventType.Mouse);
+    // Undesirable alternatives in presence of soundness
+    listenEvent(EventType.Mouse);
+    listenEvent(EventType.Mouse);
+    // Still disallowed (clear error). Type safety enforced for wholly incompatible types
+    // listenEvent(EventType.Mouse, (e: number) => console.log(e));
 }
-
 // Enum values from different enum types are considered incompatible
 {
-  var Status; (function (Status) { const Ready = 0; Status[Status["Ready"] = Ready] = "Ready"; const Waiting = Ready + 1; Status[Status["Waiting"] = Waiting] = "Waiting"; })(Status || (Status = {}));  var Color; (function (Color) { const Red = 0; Color[Color["Red"] = Red] = "Red"; const Blue = Red + 1; Color[Color["Blue"] = Blue] = "Blue"; const Green = Blue + 1; Color[Color["Green"] = Green] = "Green"; })(Color || (Color = {}));
-  let status = Status.Ready;
-  // status = Color.Green;  // Error
+    let Status;
+    (function (Status) {
+        Status[Status["Ready"] = 0] = "Ready";
+        Status[Status["Waiting"] = 1] = "Waiting";
+    })(Status || (Status = {}));
+    let Color;
+    (function (Color) {
+        Color[Color["Red"] = 0] = "Red";
+        Color[Color["Blue"] = 1] = "Blue";
+        Color[Color["Green"] = 2] = "Green";
+    })(Color || (Color = {}));
+    let status = Status.Ready;
+    // status = Color.Green;  // Error
 }
   </script>
 </body>

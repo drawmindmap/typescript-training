@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="data:;base64,iVBORw0KGgo=">
   <style>
     html,
     body {
@@ -15,16 +16,15 @@
 </head>
 <body>
   <script type="module">
+/* eslint-disable */
 const numberRegexp = /^[0-9]+$/;
-
-class ZipCodeValidator  {
-  isAcceptable(s) {
-    return s.length === 5 && numberRegexp.test(s);
-  }
+class ZipCodeValidator {
+    isAcceptable(s) {
+        return s.length === 5 && numberRegexp.test(s);
+    }
 }
 
 /* eslint-disable */
-
 const validator = new ZipCodeValidator();
 console.log(validator);
   </script>

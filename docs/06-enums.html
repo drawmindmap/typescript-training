@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="data:;base64,iVBORw0KGgo=">
   <style>
     html,
     body {
@@ -16,48 +17,44 @@
 <body>
   <script type="module">
 /* eslint-disable */
-
 // Numeric enums
 {
-  var Direction; (function (Direction) {
-    const Up = 1; Direction[Direction["Up"] = Up] = "Up";
-    const Down = Up + 1; Direction[Direction["Down"] = Down] = "Down";
-    const Left = Down + 1; Direction[Direction["Left"] = Left] = "Left";
-    const Right = Left + 1; Direction[Direction["Right"] = Right] = "Right";
-  })(Direction || (Direction = {}));
+    let Direction;
+    (function (Direction) {
+        Direction[Direction["Up"] = 1] = "Up";
+        Direction[Direction["Down"] = 2] = "Down";
+        Direction[Direction["Left"] = 3] = "Left";
+        Direction[Direction["Right"] = 4] = "Right";
+    })(Direction || (Direction = {}));
 }
-
 // use enums
 {
-  var Response; (function (Response) {
-    const No = 0; Response[Response["No"] = No] = "No";
-    const Yes = 1; Response[Response["Yes"] = Yes] = "Yes";
-  })(Response || (Response = {}));
-
-  function respond(recipient, message) {
-    // ...
-  }
-
-  respond("Princess Caroline", Response.Yes);
-
-  let a;
-  a = 2;
-  a = Response.Yes;
-  console.log(JSON.stringify(a));
+    let Response;
+    (function (Response) {
+        Response[Response["No"] = 0] = "No";
+        Response[Response["Yes"] = 1] = "Yes";
+    })(Response || (Response = {}));
+    function respond(recipient, message) {
+        // ...
+    }
+    respond("Princess Caroline", Response.Yes);
+    let a;
+    a = 2;
+    a = Response.Yes;
+    console.log(JSON.stringify(a));
 }
-
 // String enums
 {
-  var Direction; (function (Direction) {
-    const Up = "UP"; Direction["Up"] = Up;
-    const Down = "DOWN"; Direction["Down"] = Down;
-    const Left = "LEFT"; Direction["Left"] = Left;
-    const Right = "RIGHT"; Direction["Right"] = Right;
-  })(Direction || (Direction = {}));
-
-  let a;
-  a = Direction.Right;
-  console.log(JSON.stringify(a));
+    let Direction;
+    (function (Direction) {
+        Direction["Up"] = "UP";
+        Direction["Down"] = "DOWN";
+        Direction["Left"] = "LEFT";
+        Direction["Right"] = "RIGHT";
+    })(Direction || (Direction = {}));
+    let a;
+    a = Direction.Right;
+    console.log(JSON.stringify(a));
 }
   </script>
 </body>

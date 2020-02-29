@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="data:;base64,iVBORw0KGgo=">
   <style>
     html,
     body {
@@ -16,203 +17,154 @@
 <body>
   <script type="module">
 /* eslint-disable */
-
-
 // Inheritance
 {
-  class Animal {
-    
-    constructor(theName) { this.name = theName; }
-    move(distanceInMeters = 0) {
-      console.log(`${this.name} moved ${distanceInMeters}m.`);
+    class Animal {
+        constructor(theName) { this.name = theName; }
+        move(distanceInMeters = 0) {
+            console.log(`${this.name} moved ${distanceInMeters}m.`);
+        }
     }
-  }
-
-  class Snake extends Animal {
-    constructor(name) { super(name); }
-    move(distanceInMeters = 5) {
-      console.log("Slithering...");
-      super.move(distanceInMeters);
+    class Snake extends Animal {
+        constructor(name) { super(name); }
+        move(distanceInMeters = 5) {
+            console.log("Slithering...");
+            super.move(distanceInMeters);
+        }
     }
-  }
-
-  class Horse extends Animal {
-    constructor(name) { super(name); }
-    move(distanceInMeters = 45) {
-      console.log("Galloping...");
-      super.move(distanceInMeters);
+    class Horse extends Animal {
+        constructor(name) { super(name); }
+        move(distanceInMeters = 45) {
+            console.log("Galloping...");
+            super.move(distanceInMeters);
+        }
     }
-  }
-
-  let sam = new Snake("Sammy the Python");
-  let tom = new Horse("Tommy the Palomino");
-
-  sam.move();
-  tom.move(34);
+    let sam = new Snake("Sammy the Python");
+    let tom = new Horse("Tommy the Palomino");
+    sam.move();
+    tom.move(34);
 }
 {
-  class Animal {
-    
-    constructor(theName) { this.name = theName; }
-  }
-
-  class Rhino extends Animal {
-      constructor() { super("Rhino"); }
-  }
-  let rhino = new Rhino();
-  // animal = employee; // Error: 'Animal' and 'Employee' are not compatible
+    class Animal {
+        constructor(theName) { this.name = theName; }
+    }
+    class Rhino extends Animal {
+        constructor() { super("Rhino"); }
+    }
+    let rhino = new Rhino();
+    // animal = employee; // Error: 'Animal' and 'Employee' are not compatible
 }
-
 // Understanding protected
 {
-  class Person {
-    
-    constructor(name) { this.name = name; }
-  }
-
-  class Employee extends Person {
-    
-
-    constructor(name, department) {
-      super(name);
-      this.department = department;
+    class Person {
+        constructor(name) { this.name = name; }
     }
-
-     getElevatorPitch() {
-      return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+    class Employee extends Person {
+        constructor(name, department) {
+            super(name);
+            this.department = department;
+        }
+        getElevatorPitch() {
+            return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+        }
     }
-  }
-
-  let howard = new Employee("Howard", "Sales");
-  console.log(howard.getElevatorPitch());
-  // console.log(howard.name); // error
+    let howard = new Employee("Howard", "Sales");
+    console.log(howard.getElevatorPitch());
+    // console.log(howard.name); // error
 }
 {
-  class Person {
-    
-     constructor(theName) { this.name = theName; }
-  }
-
-  // Employee can extend Person
-  class Employee extends Person {
-    
-
-    constructor(name, department) {
-      super(name);
-      this.department = department;
+    class Person {
+        constructor(theName) { this.name = theName; }
     }
-
-     getElevatorPitch() {
-      return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+    // Employee can extend Person
+    class Employee extends Person {
+        constructor(name, department) {
+            super(name);
+            this.department = department;
+        }
+        getElevatorPitch() {
+            return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+        }
     }
-  }
-
-  let howard = new Employee("Howard", "Sales");
-  // let john = new Person("John"); // Error: The 'Person' constructor is protected
+    let howard = new Employee("Howard", "Sales");
+    // let john = new Person("John"); // Error: The 'Person' constructor is protected
 }
-
-// Readonly modifier
-{
-  class Octopus {
-    
-     __init() {this.numberOfLegs = 8;}
-    constructor (theName) {Octopus.prototype.__init.call(this);
-      this.name = theName;
-    }
-  }
-  let dad = new Octopus("Man with the 8 strong legs");
-  // dad.name = "Man with the 3-piece suit"; // error! name is readonly.
-}
-
 // Parameter properties
 {
-  class Octopus {
-    constructor( name,  numberOfLegs) {this.name = name;this.numberOfLegs = numberOfLegs;
+    class Octopus {
+        constructor(name, numberOfLegs) {
+            this.name = name;
+            this.numberOfLegs = numberOfLegs;
+        }
     }
-  }
-
-  let o = new Octopus('abc', 8);
-  console.log(o.name);
-  // console.log(o.numberOfLegs);
+    let o = new Octopus('abc', 8);
+    console.log(o.name);
+    // console.log(o.numberOfLegs);
 }
-
 // Accessors
 {
-  const fullNameMaxLength = 10;
-
-  class Employee {
-    
-
-    get fullName() {
-      return this._fullName;
+    const fullNameMaxLength = 10;
+    class Employee {
+        get fullName() {
+            return this._fullName;
+        }
+        set fullName(newName) {
+            if (newName && newName.length > fullNameMaxLength) {
+                throw new Error("fullName has a max length of " + fullNameMaxLength);
+            }
+            this._fullName = newName;
+        }
     }
-
-    set fullName(newName) {
-      if (newName && newName.length > fullNameMaxLength) {
-        throw new Error("fullName has a max length of " + fullNameMaxLength);
-      }
-      
-      this._fullName = newName;
+    let employee = new Employee();
+    employee.fullName = "Bob Smith";
+    if (employee.fullName) {
+        console.log(employee.fullName);
     }
-  }
-
-  let employee = new Employee();
-  employee.fullName = "Bob Smith";
-  if (employee.fullName) {
-    console.log(employee.fullName);
-  }
 }
-
 // Static Properties
 {
-  class Grid {
-    static __initStatic() {this.origin = {x: 0, y: 0};}
-    calculateDistanceFromOrigin(point) {
-      let xDist = (point.x - Grid.origin.x);
-      let yDist = (point.y - Grid.origin.y);
-      return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
+    class Grid {
+        constructor(scale) {
+            this.scale = scale;
+        }
+        calculateDistanceFromOrigin(point) {
+            let xDist = (point.x - Grid.origin.x);
+            let yDist = (point.y - Grid.origin.y);
+            return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
+        }
     }
-    constructor ( scale) {this.scale = scale; }
-  } Grid.__initStatic();
-
-  let grid1 = new Grid(1.0);  // 1x scale
-  let grid2 = new Grid(5.0);  // 5x scale
-
-  console.log(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
-  console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
+    Grid.origin = { x: 0, y: 0 };
+    let grid1 = new Grid(1.0); // 1x scale
+    let grid2 = new Grid(5.0); // 5x scale
+    console.log(grid1.calculateDistanceFromOrigin({ x: 10, y: 10 }));
+    console.log(grid2.calculateDistanceFromOrigin({ x: 10, y: 10 }));
 }
 {
-   class Department {
-    constructor( name) {this.name = name;
+    class Department {
+        constructor(name) {
+            this.name = name;
+        }
+        printName() {
+            console.log("Department name: " + this.name);
+        }
     }
-
-    printName() {
-      console.log("Department name: " + this.name);
+    class AccountingDepartment extends Department {
+        constructor() {
+            super("Accounting and Auditing"); // constructors in derived classes must call super()
+        }
+        printMeeting() {
+            console.log("The Accounting Department meets each Monday at 10am.");
+        }
+        generateReports() {
+            console.log("Generating accounting reports...");
+        }
     }
-
-     // must be implemented in derived classes
-  }
-
-  class AccountingDepartment extends Department {
-    constructor() {
-      super("Accounting and Auditing"); // constructors in derived classes must call super()
-    }
-
-    printMeeting() {
-      console.log("The Accounting Department meets each Monday at 10am.");
-    }
-
-    generateReports() {
-      console.log("Generating accounting reports...");
-    }
-  }
-
-  let department; // ok to create a reference to an abstract type
-  // department = new Department(); // error: cannot create an instance of an abstract class
-  department = new AccountingDepartment(); // ok to create and assign a non-abstract subclass
-  department.printName();
-  department.printMeeting();
-  // department.generateReports(); // error: method doesn't exist on declared abstract type
+    let department; // ok to create a reference to an abstract type
+    // department = new Department(); // error: cannot create an instance of an abstract class
+    department = new AccountingDepartment(); // ok to create and assign a non-abstract subclass
+    department.printName();
+    department.printMeeting();
+    // department.generateReports(); // error: method doesn't exist on declared abstract type
 }
   </script>
 </body>

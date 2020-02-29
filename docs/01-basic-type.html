@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="data:;base64,iVBORw0KGgo=">
   <style>
     html,
     body {
@@ -16,68 +17,53 @@
 <body>
   <script type="module">
 /* eslint-disable */
-
-
 // Tuple
 {
-  // Declare a tuple type
-  let x;
-  // Initialize it
-  x = ["hello", 10]; // OK
-  // Initialize it incorrectly
-  // x = [10, "hello"]; // Error
-
-  console.log(x[0].substring(1)); // OK
-  // console.log(x[1].substring(1)); // Error, 'number' does not have 'substring'
-
-  // x[3] = "world"; // Error, Property '3' does not exist on type '[string, number]'.
-
-  // console.log(x[5].toString()); // Error, Property '5' does not exist on type '[string, number]'.
+    // Declare a tuple type
+    let x;
+    // Initialize it
+    x = ["hello", 10]; // OK
+    // Initialize it incorrectly
+    // x = [10, "hello"]; // Error
+    console.log(x[0].substring(1)); // OK
+    // console.log(x[1].substring(1)); // Error, 'number' does not have 'substring'
+    // x[3] = "world"; // Error, Property '3' does not exist on type '[string, number]'.
+    // console.log(x[5].toString()); // Error, Property '5' does not exist on type '[string, number]'.
 }
-
-
 // Enum
 {
-  var Color; (function (Color) {
-    const Red = 0; Color[Color["Red"] = Red] = "Red";
-    const Green = 2; Color[Color["Green"] = Green] = "Green";
-    const Blue = 4; Color[Color["Blue"] = Blue] = "Blue";
-  })(Color || (Color = {}));  let c = Color.Green;
-
-  let colorName = Color[2];
-  console.log(colorName); // Displays 'Green' as its value is 2 above
+    let Color;
+    (function (Color) {
+        Color[Color["Red"] = 0] = "Red";
+        Color[Color["Green"] = 2] = "Green";
+        Color[Color["Blue"] = 4] = "Blue";
+    })(Color || (Color = {}));
+    let c = Color.Green;
+    let colorName = Color[2];
+    console.log(colorName); // Displays 'Green' as its value is 2 above
 }
-
-
 // Any
 {
-  // prettySure.toFixed(); // Error: Property 'toFixed' doesn't exist on type 'Object'.
-
-  let list = [1, true, "free"];
-  list[1] = 100;
+    // prettySure.toFixed(); // Error: Property 'toFixed' doesn't exist on type 'Object'.
+    let list = [1, true, "free"];
+    list[1] = 100;
 }
-
-
 // Object
 {
-  function create(o) {
-    console.log(o);
-  }
-
-  create({ prop:0 }); // OK
-  create(null); // OK
-  create(undefined); // OK
-
-  // create(42); // Error
-  // create("string"); // Error
-  // create(false); // Error
-
-
-  // Type assertions
-  let someValue = "this is a string";
-  let strLength1 = (someValue).length;
-  let strLength2 = (someValue ).length;
-  console.log(strLength1, strLength2);
+    function create(o) {
+        console.log(o);
+    }
+    create({ prop: 0 }); // OK
+    create(null); // OK
+    create(undefined); // OK
+    // create(42); // Error
+    // create("string"); // Error
+    // create(false); // Error
+    // Type assertions
+    let someValue = "this is a string";
+    let strLength1 = someValue.length;
+    let strLength2 = someValue.length;
+    console.log(strLength1, strLength2);
 }
   </script>
 </body>
