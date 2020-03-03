@@ -42,18 +42,6 @@
     let pickedCard = cardPicker();
     alert("card: " + pickedCard.card + " of " + pickedCard.suit);
 }
-// this parameters in callbacks
-{
-    class Handler {
-        onClickGood(e) {
-            // can't use `this` here because it's of type void!
-            console.log('clicked!');
-        }
-    }
-    let h = new Handler();
-    let uiElement = {};
-    uiElement.addClickListener(h.onClickGood);
-}
 // Overloads
 {
     let suits = ["hearts", "spades", "clubs", "diamonds"];

@@ -109,7 +109,7 @@
   }
   let h = new Handler();
   let uiElement = {} as UIElement;
-  uiElement.addClickListener(h.onClickGood);
+  // uiElement.addClickListener(h.onClickGood);
 }
 
 
