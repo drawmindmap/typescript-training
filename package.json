@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "dat.gui": "^0.7.6",
-    "three": "^0.113.2"
+    "three": "^0.137.0"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^7.1.1",
